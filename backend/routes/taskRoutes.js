@@ -7,9 +7,10 @@ router.post("/tasks", async(req,res)=>{
     const task = new Task(req.body);
     await task.save();
     res.status(201).json(task);
-});
+});  
   
 router.get("/tasks", async(req,res)=>{
+    console.log("data sent", req.query.name)
     const tasks=await Task.find();
     res.json(tasks);
 });
@@ -21,5 +22,5 @@ router.delete("/tasks/:id", async(req,res)=>{
     const task=  await Task.findByIdAndDelete(req.params.id);
     res.json({message:"Deleted"});
 })
-
+router
 module.export=router;
